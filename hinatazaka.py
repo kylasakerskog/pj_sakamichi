@@ -41,7 +41,7 @@ def output():
         "User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:47.0) Gecko/20100101 Firefox/47.0"
     }
     
-    d_today = datetime.date.today() # + datetime.timedelta(days=22)
+    d_today = datetime.date.today() + datetime.timedelta(days=1)
     l_today = str(d_today).split("-")
     url = "https://www.hinatazaka46.com/s/official/media/list?ima=0000&dy=" + l_today[0] + l_today[1]
     
