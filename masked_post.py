@@ -25,7 +25,7 @@ def job():
         'channel': channel
     }))
 
-schedule.every().day.at("15:07").do(job)
+schedule.every().day.at("00:00").do(job)
 
 while True:
     schedule.run_pending()
