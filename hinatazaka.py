@@ -35,7 +35,8 @@ def acquire(url, h, dfrom, dto):
             pass
 
     return s
-def output():
+
+def output(period=3):
     ssl._create_default_https_context = ssl._create_unverified_context
     headers = {
         "User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:47.0) Gecko/20100101 Firefox/47.0"
@@ -45,13 +46,13 @@ def output():
     l_today = str(d_today).split("-")
     url = "https://www.hinatazaka46.com/s/official/media/list?ima=0000&dy=" + l_today[0] + l_today[1]
     
-    d_3day = d_today + datetime.timedelta(days=3)
-    l_3day = str(d_3day).split("-")
+    d_endday = d_today + datetime.timedelta(days=period)
+    l_endday = str(d_endday).split("-")
     
-    msg = "日向坂46 スケジュール (今後3日)\n" + str(int(l_today[0])) + "年" + str(int(l_today[1])) + "月\n"
+    msg = "日向坂46 スケジュール (今後" + str(period) + "日)\n" + str(int(l_today[0])) + "年" + str(int(l_today[1])) + "月\n"
     
-    if l_today[1] == l_3day[1]:
-        msg += acquire(url, headers, l_today[2], l_3day[2])
+    if l_today[1] == l_endday[1]:
+        msg += acquire(url, headers, l_today[2], l_endday[2])
     else:
         if int(l_today[1]) < 12:
             year = l_today[0]
@@ -63,10 +64,10 @@ def output():
         nmonth = "https://www.hinatazaka46.com/s/official/media/list?ima=0000&dy=" + year + month
         msg += acquire(url, headers, l_today[2], "32")
         msg += year + "年" + str(int(month)) + "月\n"    
-        msg += acquire(nmonth, headers, "01", l_3day[2])
+        msg += acquire(nmonth, headers, "01", l_endday[2])
         
     return msg
 
 if __name__ == "__main__":
-    msg = output()
+    msg = output(5)
     print(msg)
