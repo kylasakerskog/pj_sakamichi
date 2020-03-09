@@ -1,7 +1,7 @@
 pj_sakamichi
 ====
 
-Overview
+## Overview
 坂道系アイドルのスケジュールを定期的に取得し，slackに通知するプログラム
 
 ## Description
