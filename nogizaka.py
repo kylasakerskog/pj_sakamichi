@@ -1,6 +1,9 @@
 # coding: UTF-8
+import requests
 import urllib.request
 from bs4 import BeautifulSoup
+import json
+import time
 
 headers = {
         "User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:47.0) Gecko/20100101 Firefox/47.0"
@@ -26,7 +29,7 @@ for i, tag in enumerate(div):
     except:
         pass
 
-
+"""
 for i, el in enumerate(l):
     try:
         print(i)
@@ -35,4 +38,19 @@ for i, el in enumerate(l):
             
     except:
         pass
+"""
+
+payload = {
+    "member" : "",
+    "category" : "",
+    "monthly": "",
+    "member" : "",
+    "category" : "",
+    "monthly": "202004"
+}
+
+r = requests.post(url, headers=headers, data=payload)
+if r.status_code == requests.codes.ok:
+    nsoup = BeautifulSoup(r.content, "html.parser")
+    print(nsoup.prettify())
 
